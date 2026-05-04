@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "primary-container": "#0070eb",
+                    "surface-bright": "#f9f9ff",
+                    "surface-container": "#ecedf9",
+                    "primary": "#0058bc",
+                    "outline-variant": "#c1c6d7",
+                    "primary-fixed-dim": "#adc6ff",
+                    "on-tertiary-fixed-variant": "#7c2e00",
+                    "error-container": "#ffdad6",
+                    "secondary": "#5d5e63",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#004493",
+                    "on-secondary-fixed-variant": "#46464b",
+                    "on-background": "#181c23",
+                    "secondary-container": "#e0dfe4",
+                    "outline": "#717786",
+                    "secondary-fixed": "#e3e2e7",
+                    "secondary-fixed-dim": "#c6c6cb",
+                    "on-secondary-fixed": "#1a1b1f",
+                    "on-surface": "#181c23",
+                    "surface-variant": "#e0e2ed",
+                    "surface-container-low": "#f1f3fe",
+                    "background": "#f9f9ff",
+                    "inverse-primary": "#adc6ff",
+                    "surface-container-high": "#e6e8f3",
+                    "tertiary-container": "#c64f00",
+                    "surface": "#f9f9ff",
+                    "on-primary-container": "#fefcff",
+                    "on-surface-variant": "#414755",
+                    "on-error": "#ffffff",
+                    "primary-fixed": "#d8e2ff",
+                    "on-primary-fixed": "#001a41",
+                    "on-tertiary-container": "#fffbff",
+                    "inverse-surface": "#2d3039",
+                    "tertiary": "#9e3d00",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#e0e2ed",
+                    "on-primary": "#ffffff",
+                    "surface-dim": "#d8d9e5",
+                    "tertiary-fixed": "#ffdbcc",
+                    "on-secondary-container": "#626267",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#eef0fc",
+                    "tertiary-fixed-dim": "#ffb595",
+                    "surface-tint": "#005bc1",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed": "#351000"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "md": "16px",
+                    "xl": "32px",
+                    "unit": "4px",
+                    "sm": "8px",
+                    "margin-page": "40px",
+                    "lg": "24px",
+                    "gutter": "20px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                    "headline-xl": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["15px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                    "headline-md": ["18px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "600"}],
+                    "body-sm": ["13px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                    "label-sm": ["11px", {"lineHeight": "1", "letterSpacing": "0", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f9f9ff; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e0e2ed; border-radius: 10px; }
+        .kanban-column { min-width: 320px; flex: 1; }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased overflow-hidden h-screen flex">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full flex flex-col p-4 z-50 h-screen w-64 border-r border-slate-200 bg-slate-50">
+<div class="flex items-center gap-3 mb-8 px-2">
+<div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
+<img alt="Mini Jira Logo" class="w-6 h-6 invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKpYZ88FAufrIRNj9dFiaU7jzhls-LqBxyy_EvaT4m8RqA3SSwYYuHWKDP9aL-DIMybax5vCHOyTBDZ9BTgc71dcOoqlHwR9yqllHyrP4-NYuk1ZXyF40SJFcZj4UcnD6HowqSQCunIP8RV06M_qCJRhV4MhRgzyUfkAoUnOD3YqSLD30hZQigJycn6xhe8_rbKpY3SAyxP0rYllqFrIL5HhhYgcNdhJ4tCdFekMpDy9bndzxGw5qb8uBHgGBHuDemfUNYO2VeYA"/>
+</div>
+<div>
+<h2 class="font-headline-md text-slate-900 leading-tight">Mini Jira</h2>
+<p class="text-label-sm text-slate-500">Product Dev</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Active Tab: Board (Tablero) -->
+<a class="flex items-center gap-3 px-4 py-2 text-blue-600 bg-blue-50 rounded-lg cursor-pointer active:opacity-80 transition-all font-medium text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="view_kanban">view_kanban</span>
+<span>Board</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-600 hover:bg-slate-100 rounded-lg cursor-pointer active:opacity-80 transition-all font-medium text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="list_alt">list_alt</span>
+<span>Backlog</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-600 hover:bg-slate-100 rounded-lg cursor-pointer active:opacity-80 transition-all font-medium text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span>Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-600 hover:bg-slate-100 rounded-lg cursor-pointer active:opacity-80 transition-all font-medium text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Team</span>
+</a>
+</nav>
+<div class="mt-auto space-y-4 pt-4 border-t border-slate-200">
+<button class="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-white border border-slate-200 text-slate-700 rounded-lg hover:bg-slate-50 transition-all font-medium text-sm">
+<span class="material-symbols-outlined text-[18px]" data-icon="person_add">person_add</span>
+                Invite Member
+            </button>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-all font-medium text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span>Help</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-all font-medium text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col ml-64 min-h-screen">
+<!-- TopNavBar -->
+<header class="sticky top-0 w-full flex justify-between items-center px-6 h-16 bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-sm z-40 font-sans antialiased text-slate-900">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[20px]" data-icon="search">search</span>
+<input class="w-full bg-slate-100 border-none rounded-lg py-2 pl-10 pr-4 text-body-sm focus:ring-2 focus:ring-primary-container outline-none transition-all" placeholder="Buscar tickets, personas..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-primary text-white px-4 py-2 rounded-lg font-semibold hover:bg-primary/90 active:scale-95 transition-all text-body-sm">
+                    Create Ticket
+                </button>
+<div class="flex items-center gap-2 px-2">
+<button class="p-2 text-slate-500 hover:bg-slate-50 rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-50 rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+<div class="h-8 w-[1px] bg-slate-200 mx-1"></div>
+<img alt="User profile" class="w-9 h-9 rounded-full object-cover border border-slate-200" data-alt="A professional headshot of a young female project manager in a bright, modern office setting. She has a warm, confident expression and is wearing casual business attire. The lighting is soft and natural, emphasizing a productive and friendly atmosphere in line with a clean light-mode UI design. The color palette is composed of soft whites and neutral greys with a focused clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3XpyCrx1Q4z5IXa55GSQ0Zbe_MfvT7k-EiZ39QRFcJDuDyNlON8-YcM1fA4TrmoRLJ1TGsck49kR7KAdEET1MBOZZocNpXPWcok15jhA1P1gMeSyRnkjjv0ZpRSAxWD0v5pLxXM2-6HPzcrh1Pg_c-_htg62pWd9KwjU-9dNPPNHm1MERN60YHO4TGTTlArE9WAC_uuB9tXNL0lHTAdm3-oEONSqVmgVCWu1800-AufLGh_PxCpq8Y6ClkQq2zySgpk_d4q_Bsw"/>
+</div>
+</header>
+<!-- Kanban Board Canvas -->
+<section class="flex-1 p-6 overflow-hidden flex flex-col bg-slate-50/50">
+<div class="flex items-center justify-between mb-6">
+<div>
+<nav class="flex items-center gap-2 text-label-sm text-slate-500 mb-1">
+<span>Proyectos</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+<span class="text-slate-900 font-medium">Mini Jira</span>
+</nav>
+<h1 class="font-headline-lg text-slate-900">Tablero Kanban</h1>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex -space-x-2 mr-4">
+<img class="w-8 h-8 rounded-full border-2 border-white object-cover" data-alt="Close-up portrait of a male developer with glasses, smiling slightly, high-key studio lighting, modern minimalist background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsHb-RS4v0mGP6MpXpKvhWxbQUqjl5w4PKaeocdna0v3NFIPVgKWD9-374Omu7m8_I050SxYXjQI3huxRQIWCwjWwUwKzolVaxvwDlEAUaWq9pOLHPHgrD7warUbaoFeebz4SIEuiwA8-2QbETXs6kAABFG413D-GSelPmEZBlVxoilaps5WOM6HY_YXiVmsyOjM_FuLaJx2yQUB5v3yyh6jO7VlLU3vzoEd9pBpLiiZpBupzN_8GMzbV5ajP4L3gPMZ5-bWdnXA"/>
+<img class="w-8 h-8 rounded-full border-2 border-white object-cover" data-alt="Portrait of a creative designer with curly hair, natural light, smiling, clean white background, representative of a collaborative team member." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBL0RPyiddCnZkH93oBgKNhAhzO_HjxCRJZAaHmiGV2_HejMktJunI3k-rhAD5Z53ABnvMLaobKPRto9SPwXacraKmwQBY533FMy1jowXTrsEE1EWCvsF9jEBnlYQNdSAyaXNC129YSi_n2_CFwpoCiXJYBNoBx8QC0Ou7_m31ZpPsdAAdCQFrXYgsg1vktf_ArwlLMP9DskwVR0v7w3Aow47Ol0MAsoA9scQOtmFkQfGot15Fs4JA_Oa2BePejq-W4i9p9DaGztQ"/>
+<img class="w-8 h-8 rounded-full border-2 border-white object-cover" data-alt="Minimalist professional portrait of a tech lead with a neutral background, soft professional lighting, depicting competence and clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvA8T0PJvjLAEO5jTrgzu4C3OhiIHwBKwiT2c-zRAj2Mumesx9cBHGrUXZgP8Y3D8dUJNz-ob0NMEz3dSojRYruJFccblmo2AIssq4Gcy18Xl452lsUlcMl2c7q3PFTdcDddyirEFJVkjbDpaPtv2XPHRobl_iiC98Ugic9B7nbtHzTSKZBT2u556u554x6MWQia7g_2wO1VG0GzMcZ442nR_ObkU6X5c2LLq3wono1QfkvO0Mb7g0RoQZXbg6kQgdrIKKR9HX6w"/>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-600">+4</div>
+</div>
+<button class="flex items-center gap-2 px-3 py-1.5 bg-white border border-slate-200 rounded-md text-body-sm text-slate-600 hover:bg-slate-50">
+<span class="material-symbols-outlined text-[18px]" data-icon="filter_list">filter_list</span>
+                        Filtros
+                    </button>
+</div>
+</div>
+<!-- Scrollable Kanban Area -->
+<div class="flex-1 overflow-x-auto custom-scrollbar flex gap-gutter pb-4">
+<!-- Column: Por hacer -->
+<div class="kanban-column flex flex-col gap-4">
+<div class="flex items-center justify-between px-2 py-1">
+<div class="flex items-center gap-2">
+<h3 class="font-label-md text-slate-500 uppercase tracking-wider">POR HACER</h3>
+<span class="bg-slate-200 text-slate-600 text-[10px] font-bold px-2 py-0.5 rounded-full">3</span>
+</div>
+<button class="text-slate-400 hover:text-slate-600"><span class="material-symbols-outlined" data-icon="more_horiz">more_horiz</span></button>
+</div>
+<div class="space-y-4">
+<!-- Card 1 -->
+<div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm hover:shadow-md transition-all cursor-grab active:cursor-grabbing border-l-4 border-l-error">
+<div class="flex justify-between items-start mb-2">
+<span class="px-2 py-0.5 bg-error/10 text-error text-[10px] font-bold rounded-md uppercase">Alta</span>
+<span class="text-slate-400 text-[11px]">MJ-101</span>
+</div>
+<h4 class="font-headline-md text-slate-800 mb-3 text-[15px]">Refactorizar landing page para SEO</h4>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-blue-50 text-blue-600 text-[10px] font-medium px-2 py-0.5 rounded">Frontend</span>
+<span class="bg-purple-50 text-purple-600 text-[10px] font-medium px-2 py-0.5 rounded">Marketing</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center text-slate-400 text-[12px] gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="chat_bubble">chat_bubble</span>
+<span>4</span>
+</div>
+<img alt="User" class="w-6 h-6 rounded-full object-cover grayscale hover:grayscale-0 transition-all" data-alt="Portrait of a focused team member in a minimalist office setting with soft backlighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWh7T77yBLLoCgBCPsy7G1jRKcdIj2Y84uUsc5bmk9Tve5DIAl-lliT9Z086JaF6wp3eEAH-d0Q9agAlhDZiV7j79kEmGTPvqKWk-9lwnnhefEMXYPfqy9rxsIm5LvPwhI3fV2joByVMlHl1ne995geBd4_iBOgtA_y4oZxHWcVUa14_QrzgP4pXVAwGgk8K9ZquSEeG-R_q2HI1Qmaas-6Z7jjE0Lrbh-BpkzUyqZd16j2hafgzwMCZB0gvhxS1Ghs3KYgnw9tA"/>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm hover:shadow-md transition-all cursor-grab active:cursor-grabbing border-l-4 border-l-amber-500">
+<div class="flex justify-between items-start mb-2">
+<span class="px-2 py-0.5 bg-amber-500/10 text-amber-600 text-[10px] font-bold rounded-md uppercase">Media</span>
+<span class="text-slate-400 text-[11px]">MJ-104</span>
+</div>
+<h4 class="font-headline-md text-slate-800 mb-3 text-[15px]">Diseñar sistema de iconos personalizados</h4>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-pink-50 text-pink-600 text-[10px] font-medium px-2 py-0.5 rounded">Design</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center text-slate-400 text-[12px] gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="attachment">attachment</span>
+<span>2</span>
+</div>
+<img alt="User" class="w-6 h-6 rounded-full object-cover" data-alt="A profile of a female graphic designer in a bright, airy design studio." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC43Ul8qng5Bfn8Xo6RKBkBkdD3Qo_sV-OB60ywkrAZFmtcXTXT5q9rJjMsgk8m-dznjb1zGhPhj1QSCJ78csmpWby_3O3EWfddx2mIaD3cKx2Y7dhD4_fs5K3C3GO3OOENCmYCQUuKuDx0TgEHDgRZEsm03tB007sh1zoNtsQxLQiTfWPhgM7A78CNk1F9mPeAgAkymVCqdkAvKvjyy7amIAqbFZbgXADX0wAX1ldeoPLk-o15ilRBmpiKkM_M1kk8Au5LWzHR8w"/>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm hover:shadow-md transition-all cursor-grab active:cursor-grabbing border-l-4 border-l-primary">
+<div class="flex justify-between items-start mb-2">
+<span class="px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-bold rounded-md uppercase">Baja</span>
+<span class="text-slate-400 text-[11px]">MJ-107</span>
+</div>
+<h4 class="font-headline-md text-slate-800 mb-3 text-[15px]">Actualizar documentación de API v2</h4>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-emerald-50 text-emerald-600 text-[10px] font-medium px-2 py-0.5 rounded">Backend</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center text-slate-400 text-[12px] gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="schedule">schedule</span>
+<span>2 d</span>
+</div>
+<img alt="User" class="w-6 h-6 rounded-full object-cover" data-alt="Portrait of a young male software engineer in a modern collaborative workspace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyuMuHH6ySY40nePb1o7H4llvjaNqBo4RcBdQG-R-4-xq8M35stzYf2AWDg-mdUcc_3OaCDJrb85BZCp6Edmapfc4xtWUDTHQnoPyg7HPQUcU9Pq7UqKic3n9SxN8XU0O6PexCRUnzHdyaqqfXJ5DneYAYT7Gl3_TJUgasR0-k8hWaFIyJ2VGrBeDRTua38qXqLzS0UZMwYfVpDw0Fe8gg1BrfPDhVb5d7YT_r-7TFFqNXwYOdtXjkdRE-Q_DVJW06ukOgTK8zyQ"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: En progreso -->
+<div class="kanban-column flex flex-col gap-4">
+<div class="flex items-center justify-between px-2 py-1">
+<div class="flex items-center gap-2">
+<h3 class="font-label-md text-slate-500 uppercase tracking-wider">EN PROGRESO</h3>
+<span class="bg-blue-100 text-blue-600 text-[10px] font-bold px-2 py-0.5 rounded-full">2</span>
+</div>
+<button class="text-slate-400 hover:text-slate-600"><span class="material-symbols-outlined" data-icon="more_horiz">more_horiz</span></button>
+</div>
+<div class="space-y-4">
+<!-- Card 1 -->
+<div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm hover:shadow-md transition-all cursor-grab active:cursor-grabbing border-l-4 border-l-error">
+<div class="flex justify-between items-start mb-2">
+<span class="px-2 py-0.5 bg-error/10 text-error text-[10px] font-bold rounded-md uppercase">Alta</span>
+<span class="text-slate-400 text-[11px]">MJ-102</span>
+</div>
+<h4 class="font-headline-md text-slate-800 mb-3 text-[15px]">Bug: Error en login de usuarios</h4>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-rose-50 text-rose-600 text-[10px] font-medium px-2 py-0.5 rounded">Critical</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center text-slate-400 text-[12px] gap-1">
+<span class="material-symbols-outlined text-[16px] text-error" data-icon="priority_high">priority_high</span>
+<span>Urgente</span>
+</div>
+<img alt="User" class="w-6 h-6 rounded-full object-cover" data-alt="A sharp, clear portrait of a technical lead working in a high-tech environment with ambient blue light accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAR4a-i31YyoBymz2QK9e9ILA8LbAZd36uuaw0pDedvkFTmsllv-oHlCmZ2gA-DP-UM0bSgGnvb4J3mree0TI0TqLWLBLvAYa9k0xxL_tED3Kgc3Eo0fIzS1iwUqEw7UJB0KEMQI8Rc9NJy4Y6L1YVJjbEvf5L2eVWJ-llMfrgcqGxvYDtkh5IS27cZvzTOPeX2DvVZRIiqRxgJBd9jfZNI3NzIIorkmKze0WxLjl8PsyXcBeCjUfN5O8_YW-XFpy9Mx4Py5fJH5A"/>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm hover:shadow-md transition-all cursor-grab active:cursor-grabbing border-l-4 border-l-amber-500">
+<div class="flex justify-between items-start mb-2">
+<span class="px-2 py-0.5 bg-amber-500/10 text-amber-600 text-[10px] font-bold rounded-md uppercase">Media</span>
+<span class="text-slate-400 text-[11px]">MJ-105</span>
+</div>
+<h4 class="font-headline-md text-slate-800 mb-3 text-[15px]">Implementar modo oscuro en dashboard</h4>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-blue-50 text-blue-600 text-[10px] font-medium px-2 py-0.5 rounded">Frontend</span>
+<span class="bg-pink-50 text-pink-600 text-[10px] font-medium px-2 py-0.5 rounded">Design</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center text-slate-400 text-[12px] gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="timer">timer</span>
+<span>3h rest</span>
+</div>
+<img alt="User" class="w-6 h-6 rounded-full object-cover" data-alt="Portrait of a modern software developer in a high-key lighting setup with a clean, professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCD9fKjVIwcoNOdxV-CDFAJ5-2Cck1neAWMAQHkyyr65WeMKC0bL2tnRs1ufo5U0Le-LPS_cyd-3HFhLjShuJgnEFH1XguW2qZ_y9W2ncHfxdfa6GYuQQD6cOJwuZt6cZ02IFLky_k5y7r3FYOKOITj2RhyzT9WS9agD9OqZKtE0GtjdtB2bpxCy1IhcqFdbVv7Y8h6BY0RWomavwLzbcJLBIbzHgsLVs55hSLBR5UlL0v7cVsdtzcOBBIn1Zh92DOzW325Zv87qw"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: Listo -->
+<div class="kanban-column flex flex-col gap-4">
+<div class="flex items-center justify-between px-2 py-1">
+<div class="flex items-center gap-2">
+<h3 class="font-label-md text-slate-500 uppercase tracking-wider">LISTO</h3>
+<span class="bg-emerald-100 text-emerald-600 text-[10px] font-bold px-2 py-0.5 rounded-full">2</span>
+</div>
+<button class="text-slate-400 hover:text-slate-600"><span class="material-symbols-outlined" data-icon="more_horiz">more_horiz</span></button>
+</div>
+<div class="space-y-4">
+<!-- Card 1 -->
+<div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm hover:shadow-md transition-all cursor-grab active:cursor-grabbing border-l-4 border-l-primary opacity-75">
+<div class="flex justify-between items-start mb-2">
+<span class="px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-bold rounded-md uppercase">Baja</span>
+<span class="text-slate-400 text-[11px]">MJ-098</span>
+</div>
+<h4 class="font-headline-md text-slate-800 mb-3 text-[15px] line-through">Configurar integración con Slack</h4>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-slate-50 text-slate-400 text-[10px] font-medium px-2 py-0.5 rounded">DevOps</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center text-emerald-600 text-[12px] gap-1 font-medium">
+<span class="material-symbols-outlined text-[18px]" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Completado</span>
+</div>
+<img alt="User" class="w-6 h-6 rounded-full object-cover" data-alt="Portrait of a cheerful male devops engineer in a bright, modern office with soft shadows and clean lines." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuSfLgLhAVO6qFGhGpbEZWtmMfPxIytOrxoTHOjm725WhNN3d7SyBywrTDijXkND8NB7oOP7YPhEnqEoB5V1eQTupxv9UN3OvqfPRDPpcAAPMS4RWnNIfpjoBw3-JDgNqrqF6KuBiYUMzntVX90m7KTYxVX9m8-nEj2xnssEAJMTL7gGvqIdrQcdvSCoQnkl86whYLYEz8YzxKo4DyyvWB_VXOrhtXfOXep1Lishn5-C63iwizW_-pMcYb-YTgOCJpfeZZq0p-Lw"/>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm hover:shadow-md transition-all cursor-grab active:cursor-grabbing border-l-4 border-l-amber-500 opacity-75">
+<div class="flex justify-between items-start mb-2">
+<span class="px-2 py-0.5 bg-amber-500/10 text-amber-600 text-[10px] font-bold rounded-md uppercase">Media</span>
+<span class="text-slate-400 text-[11px]">MJ-095</span>
+</div>
+<h4 class="font-headline-md text-slate-800 mb-3 text-[15px] line-through">Testing de flujos de pago</h4>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-slate-50 text-slate-400 text-[10px] font-medium px-2 py-0.5 rounded">QA</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center text-emerald-600 text-[12px] gap-1 font-medium">
+<span class="material-symbols-outlined text-[18px]" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Completado</span>
+</div>
+<img alt="User" class="w-6 h-6 rounded-full object-cover" data-alt="Creative female developer in a bright studio, smiling, natural high-key lighting for a clean UI aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXXcdTpk88Gr0hDLiNWY1JvjO4b9FAAbwAPdUSv2sV607htDRPkH0mcQPZB5p6ngUM1HQgL1SqIR1ghi0MxOKKHKiTVCqQb7dcAPa36Btn3sNrPkKjchS6k3wiUeY05tw8ojogDQOYnrgZvs0Rr3lF_8vCUJHCief1VPe81WMM28BacwA5VRfVSVqdpuujPGzQG1f9UXU3-CigWARTzcYg7kOJAx91mb27gGv2R7GnmZinrd3qFbFwiSTlK1a07lAx711SeV2cGw"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Column Add Placeholder -->
+<div class="kanban-column flex flex-col gap-4">
+<button class="w-full h-12 border-2 border-dashed border-slate-200 rounded-xl flex items-center justify-center text-slate-400 hover:bg-white hover:border-primary-container hover:text-primary-container transition-all gap-2 font-medium">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                        Nueva columna
+                    </button>
+</div>
+</div>
+</section>
+<!-- Floating Action Button for Board (Contextual) -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-white rounded-full shadow-lg flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined text-[28px]" data-icon="add" style="font-variation-settings: 'wght' 600;">add</span>
+</button>
+</main>
+</body></html>

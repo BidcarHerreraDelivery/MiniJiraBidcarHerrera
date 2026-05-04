@@ -1,73 +1,103 @@
-# React + TypeScript + Vite
+# CicloVida — Mini Jira
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación de gestión de proyectos estilo Jira, construida como proyecto académico con React 19, TypeScript y un sistema de diseño personalizado.
 
-Currently, two official plugins are available:
+![Tablero Kanban](../design_ref.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## ✨ Funcionalidades
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Tablero Kanban** con drag & drop entre columnas (Por hacer / En progreso / Review / Listo / Bloqueado)
+- **Actualización optimista** con `useOptimistic` de React 19 + rollback automático simulado
+- **Gestión de tickets**: crear, editar, archivar, asignar prioridad y etiquetas
+- **Comentarios** por ticket con edición y eliminación
+- **Sistema de roles**: Admin y Usuario con permisos diferenciados
+- **Dashboard** con métricas y gráficas (Recharts)
+- **Filtros** por estado, prioridad y búsqueda de texto
+- **Detección de concurrencia**: alerta si otro usuario editó el ticket mientras trabajabas
+- **Gestión de usuarios** (solo Admin): crear, activar/desactivar cuentas
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Stack tecnológico
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+| Capa | Tecnología |
+|---|---|
+| Lenguaje | TypeScript 5.x |
+| Framework UI | React 19.x |
+| Build tool | Vite 6.x |
+| Routing | React Router v7 |
+| Server state | TanStack Query v5 |
+| Client state | Zustand v5 |
+| Design System | Shadcn/UI + Tailwind CSS v3 |
+| Formularios | React Hook Form v7 |
+| Validación | Zod v3 |
+| Rich text | Tiptap v2 |
+| Drag & drop | @dnd-kit/core v6 |
+| Gráficas | Recharts v2 |
+| HTTP | Axios v1 |
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🎨 Sistema de diseño
+
+El proyecto implementa un sistema de tokens de color personalizado basado en Material Design 3, con **52 custom properties CSS** mapeadas como utilidades Tailwind. Ningún color genérico de Tailwind (`blue-*`, `gray-*`, etc.) es utilizado — todo pasa por tokens semánticos como `bg-primary`, `text-on-surface`, `border-outline-variant`.
+
+Tipografía: **Inter** con escala tipográfica definida (`headline-xl`, `headline-lg`, `body-md`, `label-sm`, etc.).
+
+---
+
+## 🗂️ Arquitectura
+
+```
+frontend/src/
+├── types/          # Interfaces globales
+├── lib/            # axios, utils, mockSetup, mockData
+├── router/         # ProtectedRoute, AdminRoute
+├── features/
+│   ├── auth/       # store, api, schemas, hooks, components
+│   ├── tickets/    # store, api, schemas, hooks, components
+│   ├── comments/   # api, hooks, components
+│   ├── dashboard/  # api, hooks, components
+│   └── admin/      # api, schemas, hooks, components
+├── components/
+│   ├── ui/         # Re-exports Shadcn/UI
+│   └── layout/     # AppShell, Sidebar, TopBar
+└── pages/          # Una por ruta
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🚀 Cómo ejecutar
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+cd frontend
+npm install
+npm run dev
 ```
+
+La aplicación corre en `http://localhost:5173`
+
+> **Nota:** El modo mock está activo por defecto (`VITE_MOCK=true` en `.env.development`). No se necesita backend para probar la aplicación.
+
+**Credenciales de prueba:**
+- Admin: `admin@ciclovida.com` / `password`
+- Usuario: `user@ciclovida.com` / `password`
+
+---
+
+## 📦 Build de producción
+
+```bash
+cd frontend
+npm run build
+```
+
+---
+
+## 👨‍💻 Autor
+
+**Bidcar Herrera** — Proyecto académico  
+[github.com/BidcarHerreraDelivery](https://github.com/BidcarHerreraDelivery)
+
